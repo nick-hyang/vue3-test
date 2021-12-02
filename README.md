@@ -1,4 +1,5 @@
 # Vue 3 + Typescript + Vite
+
 [项目参考]{https://juejin.cn/post/6951649464637636622}
 
 ## 初始化项目
@@ -23,4 +24,5 @@ npm run dev
 -   vuex: npm install vuex@4
 
 ### 格式化代码
+
 npx prettier --write .

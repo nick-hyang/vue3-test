@@ -1,8 +1,8 @@
 import request from '../utils/axios'
 
-export function test() {
+export function verify() {
     return request({
-        url: '/test',
+        url: '/sample/test/',
         method: 'get'
     })
 }

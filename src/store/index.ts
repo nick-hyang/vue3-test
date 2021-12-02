@@ -1,26 +1,18 @@
-import { createStore } from 'vuex'
+import { InjectionKey } from 'vue'
+import { createStore, Store, useStore as baseUseStore } from 'vuex'
+import BaseStateTypes, { AllStateTypes } from './types'
 
-const defaultState = {
-    count: 0
-}
+import AppModule from './modules/app'
 
-export default createStore({
-    state() {
-        return defaultState
-    },
-    mutations: {
-        increment(state: typeof defaultState) {
-            state.count += 1
-        }
-    },
-    actions: {
-        increment(context) {
-            context.commit('increment')
-        }
-    },
-    getters: {
-        double(state: typeof defaultState) {
-            return 2 * state.count
-        }
+export const key: InjectionKey<Store<BaseStateTypes>> = Symbol('vue-store')
+
+export const store = createStore<BaseStateTypes>({
+    modules: {
+        app: AppModule
     }
 })
+
+// 引用的地方不用再导入key，可以直接得到 const store = useStore()了
+export function useStore<T = AllStateTypes>() {
+    return baseUseStore<T>(key)
+}
